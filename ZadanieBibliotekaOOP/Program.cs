@@ -1,5 +1,5 @@
 ﻿using static Program;
-//logowanie zeby chodzilo poprawnie 
+//logowanie chodzi juz poprawnie i teraz analiza
 //ogaranc statici i nie statici czy sa w dobrych miejscach itp i jak jest lepiej
 public class Program
 {
@@ -61,16 +61,18 @@ public class Program
             Console.WriteLine("Imie: ");
             string imie = Console.ReadLine();
             Uzytkownik nowy = new Uzytkownik(login, imie);
+            uzytkownicy.Add(nowy);
             Console.WriteLine($"Zarejestrowano uzytkownika o imieniu {nowy.imie} z loginem {nowy.login}");
         }
-        public static bool Zaloguj()
+        public static void Zaloguj()
         {
             Console.WriteLine("Podaj login:");
             string login = Console.ReadLine();
             if (uzytkownicy.Exists(u => u.login == login))
             {
-                return true;
-            }return false;
+                menuPoZalogowaniu();
+            }
+            else { Console.WriteLine("nie pozdro nie ma takiego uzytkownika"); }
         }
     }
     public interface IOperacjeBiblioteczne
@@ -185,11 +187,7 @@ public class Program
                     Uzytkownik.Zarejestruj();
                     break;
                 case 2:
-                    if (Uzytkownik.Zaloguj())
-                    {
-                        menuPoZalogowaniu();
-                        wybor = 0;
-                    }
+                    Uzytkownik.Zaloguj();
                     break;
                 case 0:
                     return;
@@ -204,7 +202,7 @@ public class Program
             Console.WriteLine("1. Wyswietl ksiazki");
             Console.WriteLine("2. Wypozycz ksiazki");
             Console.WriteLine("3. Zwroc ksiazki");
-            Console.WriteLine("4. Wyjdź");
+            Console.WriteLine("4. Wyloguj");
             Console.WriteLine("Wybierz opcje: ");
             int wybor = -1;
             try
