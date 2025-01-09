@@ -137,11 +137,11 @@ public class Program
             if (ksiazka.Status)
             {
                 ksiazka.ZmienStatus(false);
-                Console.WriteLine($"Ksiazka {ksiazka} zostala wypozyczona");
+                Console.WriteLine($"Ksiazka {ksiazka.Tytul} zostala wypozyczona");
             }
             else
             {
-                Console.WriteLine($"Ksiazka {ksiazka} jest juz wypozyczona");
+                Console.WriteLine($"Ksiazka {ksiazka.Tytul} jest juz wypozyczona");
             }
         }
         public void Zwroc(string tytul)
